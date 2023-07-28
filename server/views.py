@@ -46,7 +46,7 @@ class PersonCreateView(generics.CreateAPIView):
             token = TokenObtainPairSerializer()
             token = token.validate({'username': user.username, 'password': serializer.validated_data['password']})
             # print(token)
-            token["user"] = PersonSerializer(user).data
+            token["user"] = PersonListSerializer(user).data
             # das = TokenObtainSerializer(data={
             #     'username': serializer.validated_data['username'],
             #     'password': serializer.validated_data['password']
