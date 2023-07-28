@@ -16,7 +16,7 @@ from rest_framework_simplejwt.serializers import TokenVerifySerializer
 from rest_framework_simplejwt.settings import api_settings
 from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
-from .filters import ProjectFilter, MaterialFilter, PersonFilter
+from .filters import ProjectFilter, MaterialFilter, PersonFilter, AuthorFilter
 from .paginations import MyCustomPagination
 
 
@@ -214,4 +214,4 @@ class AuthorListView(generics.ListAPIView):
     queryset = Author.objects.all()
     serializer_class = PersonListSerializer
     filter_backends = (filters.DjangoFilterBackend, fr.OrderingFilter)
-    filterset_class = PersonFilter
+    filterset_class = AuthorFilter
