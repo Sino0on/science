@@ -38,5 +38,10 @@ class MaterialSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class DisciplineSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Discipline
+        fields = '__all__'
+
 
 

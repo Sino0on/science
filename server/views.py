@@ -2,7 +2,9 @@ from django.shortcuts import render
 from .models import Person
 from django.conf import settings
 from rest_framework import generics, status
+from rest_framework import generics, filters as fr, status
 from .serializers import *
+from django_filters import rest_framework as filters
 from rest_framework.response import Response
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
@@ -13,7 +15,9 @@ from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
 from rest_framework_simplejwt.serializers import TokenVerifySerializer
 from rest_framework_simplejwt.settings import api_settings
 from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from .filters import ProjectFilter, MaterialFilter
+from .paginations import MyCustomPagination
 
 
 class PersonCreateView(generics.CreateAPIView):
@@ -120,22 +124,35 @@ class ScienceCreateView(generics.CreateAPIView):
 
 class CityListView(generics.ListAPIView):
     serializer_class = CitySerializer
+    queryset = City.objects.all()
 
 
 class ProjectListView(generics.ListAPIView):
+    queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+    filter_backends = (filters.DjangoFilterBackend, fr.OrderingFilter)
+    filterset_class = ProjectFilter
+    # ordering_fields = ['price', 'likes']
+    pagination_class = MyCustomPagination
 
 
 class ProfessionListView(generics.ListAPIView):
     serializer_class = ProfessionSerializer
+    queryset = Profession.objects.all()
 
 
 class MaterialListView(generics.ListAPIView):
+    queryset = Material.objects.all()
     serializer_class = MaterialSerializer
+    filter_backends = (filters.DjangoFilterBackend, fr.OrderingFilter)
+    filterset_class = MaterialFilter
+    # ordering_fields = ['price', 'likes']
+    pagination_class = MyCustomPagination
 
 
 class ScienceListView(generics.ListAPIView):
     serializer_class = ScienceSerializer
+    queryset = Science.objects.all()
 
 
 class CityDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -162,3 +179,16 @@ class ScienceDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ScienceSerializer
     lookup_field = 'pk'
 
+
+class DisciplineDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = DisciplineSerializer
+    lookup_field = 'pk'
+
+
+class DisciplineListView(generics.ListAPIView):
+    serializer_class = DisciplineSerializer
+
+
+class DisciplineCreateView(generics.CreateAPIView):
+    serializer_class = DisciplineSerializer
+    permission_classes = (IsAuthenticated,)

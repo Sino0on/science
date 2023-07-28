@@ -23,6 +23,10 @@ class ProfessionAdmin(TranslationAdmin):
     model = Profession
 
 
+class DisciplineAdmin(TranslationAdmin):
+    model = Discipline
+
+
 class ScienceAdmin(TranslationAdmin):
     model = Science
 
@@ -35,4 +39,5 @@ admin.site.register(Country, CountryAdmin)
 admin.site.register(Person)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Material, MaterialAdmin)
+admin.site.register(Discipline, DisciplineAdmin)
 admin.site.register(Author)

@@ -30,3 +30,8 @@ class CityTranslationOptions(TranslationOptions):
 @register(Science)
 class ScienceTranslationOptions(TranslationOptions):
     fields = ('title',)
+
+
+@register(Discipline)
+class DisciplineTranslationOptions(TranslationOptions):
+    fields = ('title',)
