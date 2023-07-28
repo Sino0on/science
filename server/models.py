@@ -117,12 +117,30 @@ class Person(AbstractUser):
         null=True,
         verbose_name="Город"
     )
+    site = models.URLField(
+        blank=True,
+        null=True,
+    )
+    twitter = models.URLField(
+        blank=True,
+        null=True,
+    )
+    facebook = models.URLField(
+        blank=True,
+        null=True,
+    )
+    youtube = models.URLField(
+        blank=True,
+        null=True,
+    )
 
     def __str__(self):
         return f'{self.username}'
 
     def get_full_name(self):
-        return f'{self.first_name} {self.last_name} {self.middle_name}'
+        if self.middle_name:
+            return f'{self.first_name} {self.last_name} {self.middle_name}'
+        return f'{self.first_name} {self.last_name}'
 
     class Meta:
         verbose_name = "Персона"
@@ -142,12 +160,14 @@ class Author(models.Model):
             self.first_name = self.person.first_name
             self.middle_name = self.person.middle_name
             self.last_name = self.person.last_name
-            return super(Author).save()
+            return super().save()
         else:
-            return super(Author).save()
+            return super().save()
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name} {self.middle_name}'
+        if self.middle_name:
+            return f'{self.first_name} {self.last_name} {self.middle_name}'
+        return f'{self.first_name} {self.last_name}'
 
     class Meta:
         verbose_name = 'Автор'
@@ -161,7 +181,7 @@ class Project(models.Model):
     year = models.DateField(verbose_name='Год')
     created_date = models.DateTimeField(auto_now_add=True)
     description = models.TextField(verbose_name='Описание')
-    members = models.ManyToManyField(Person, verbose_name='Участники')
+    members = models.ManyToManyField(Author, verbose_name='Участники', related_name='projects')
     image = models.ImageField(upload_to='images/project/%Y/%m/%d/', blank=True, null=True, verbose_name='Изображение')
 
     def __str__(self):

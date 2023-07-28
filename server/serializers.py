@@ -44,4 +44,33 @@ class DisciplineSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class AuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Author
+        fields = '__all__'
 
+
+class MaterialListSerializer(serializers.ModelSerializer):
+    authors = AuthorSerializer(many=True)
+    disciplines = DisciplineSerializer(many=True)
+
+    class Meta:
+        model = Material
+        fields = '__all__'
+
+
+class AuthorListSerializer(serializers.ModelSerializer):
+    my_projects = ProjectSerializer(source='projects', many=True)
+    my_materials = ProjectSerializer(source='materials', many=True)
+
+    class Meta:
+        model = Author
+        fields = '__all__'
+
+
+class PersonListSerializer(serializers.ModelSerializer):
+    author = AuthorListSerializer()
+
+    class Meta:
+        model = Person
+        fields = '__all__'

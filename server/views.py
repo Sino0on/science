@@ -16,7 +16,7 @@ from rest_framework_simplejwt.serializers import TokenVerifySerializer
 from rest_framework_simplejwt.settings import api_settings
 from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
-from .filters import ProjectFilter, MaterialFilter
+from .filters import ProjectFilter, MaterialFilter, PersonFilter
 from .paginations import MyCustomPagination
 
 
@@ -41,6 +41,8 @@ class PersonCreateView(generics.CreateAPIView):
             except ValidationError as e:
                 return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
             das = user.save()
+            print(user.pk)
+            author = Author.objects.create(person=user)
             token = TokenObtainPairSerializer()
             token = token.validate({'username': user.username, 'password': serializer.validated_data['password']})
             # print(token)
@@ -192,3 +194,24 @@ class DisciplineListView(generics.ListAPIView):
 class DisciplineCreateView(generics.CreateAPIView):
     serializer_class = DisciplineSerializer
     permission_classes = (IsAuthenticated,)
+
+
+class PersonDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = PersonListSerializer
+    lookup_field = 'pk'
+
+
+class PersonListView(generics.ListAPIView):
+    queryset = Person.objects.all()
+    serializer_class = PersonListSerializer
+    filter_backends = (filters.DjangoFilterBackend, fr.OrderingFilter)
+    filterset_class = PersonFilter
+    # ordering_fields = ['price', 'likes']
+    pagination_class = MyCustomPagination
+
+
+class AuthorListView(generics.ListAPIView):
+    queryset = Author.objects.all()
+    serializer_class = PersonListSerializer
+    filter_backends = (filters.DjangoFilterBackend, fr.OrderingFilter)
+    filterset_class = PersonFilter
