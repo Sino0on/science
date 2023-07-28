@@ -65,7 +65,7 @@ class NewAuthView(TokenObtainPairView):
         if serializer.is_valid():
             # print(serializer.validated_data)
             user = Person.objects.get(username=request.data['username'])
-            serializer.validated_data['user'] = PersonSerializer(user).data
+            serializer.validated_data['user'] = PersonListSerializer(user).data
 
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
