@@ -2,6 +2,18 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
+class Discipline(models.Model):
+    title = models.CharField(max_length=50, verbose_name='Название')
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Дисциплина'
+        verbose_name_plural = 'Дисциплины'
+
+
 class Profession(models.Model):
     title = models.CharField(max_length=50, verbose_name='Название')
     created_date = models.DateTimeField(auto_now_add=True)
@@ -73,6 +85,7 @@ class Person(AbstractUser):
         null=True
     )
     birth_of_date = models.DateField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     photo = models.ImageField(
         upload_to='images/avatars/%Y/%m/%d/',
         blank=True,
@@ -144,9 +157,9 @@ class Author(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=123, verbose_name='Название')
     science = models.ForeignKey(Science, models.PROTECT, verbose_name='Наука')
+    disciplines = models.ManyToManyField(Discipline)
     year = models.DateField(verbose_name='Год')
     created_date = models.DateTimeField(auto_now_add=True)
-    annotation = models.TextField(verbose_name='Аннотации')
     description = models.TextField(verbose_name='Описание')
     members = models.ManyToManyField(Person, verbose_name='Участники')
     image = models.ImageField(upload_to='images/project/%Y/%m/%d/', blank=True, null=True, verbose_name='Изображение')
@@ -162,11 +175,11 @@ class Project(models.Model):
 class Material(models.Model):
     title = models.CharField(max_length=123, verbose_name='Название')
     project = models.ForeignKey(Project, models.SET_NULL, blank=True, null=True, verbose_name='Проект')
+    disciplines = models.ManyToManyField(Discipline)
     year = models.DateField(verbose_name='Год')
     created_date = models.DateTimeField(auto_now_add=True)
-    annotation = models.TextField(verbose_name='Аннотации')
     description = models.TextField(verbose_name='Описание')
-    authors = models.ManyToManyField(Author, verbose_name='Авторы')
+    authors = models.ManyToManyField(Author, verbose_name='Авторы', related_name='materials')
     pdf = models.FileField(upload_to='files/materials/%Y/%m/%d/', verbose_name='PDF файл')
     youtube = models.URLField(verbose_name='Ютуб ссылка')
     image = models.ImageField(upload_to='images/materials/%Y/%m/%d/', blank=True, null=True, verbose_name='Название')
