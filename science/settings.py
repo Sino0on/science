@@ -78,6 +78,10 @@ TEMPLATES = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+SWAGGER_SETTINGS = {
+   'USE_SESSION_AUTH': False
+}
+
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=3),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=2),
