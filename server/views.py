@@ -214,6 +214,6 @@ class PersonListView(generics.ListAPIView):
 
 class AuthorListView(generics.ListAPIView):
     queryset = Author.objects.all()
-    serializer_class = PersonListSerializer
+    serializer_class = AuthorSerializer
     filter_backends = (filters.DjangoFilterBackend, fr.OrderingFilter)
     filterset_class = AuthorFilter
