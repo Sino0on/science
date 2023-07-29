@@ -38,10 +38,7 @@ class ScienceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class MaterialSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Material
-        fields = '__all__'
+
 
 
 class DisciplineSerializer(serializers.ModelSerializer):
@@ -79,4 +76,11 @@ class PersonListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Person
+        fields = '__all__'
+
+
+class MaterialSerializer(serializers.ModelSerializer):
+    authors = AuthorSerializer(many=True)
+    class Meta:
+        model = Material
         fields = '__all__'
