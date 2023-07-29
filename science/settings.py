@@ -60,7 +60,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# ASGI_APPLICATION = 'science.asgi.application'
+ASGI_APPLICATION = 'science.asgi.application'
 
 ROOT_URLCONF = 'science.urls'
 
