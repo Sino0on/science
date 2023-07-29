@@ -20,7 +20,7 @@ urlpatterns = [
     path('science/<int:pk>', ScienceDetailView.as_view()),
     path('materail/create', MaterialCreateView.as_view()),
     path('materail/list', MaterialListView.as_view()),
-    path('materail/<int:pk>', DisciplineDetailView.as_view()),
+    path('materail/<int:pk>', MaterialDetailView.as_view()),
     path('discipline/create', DisciplineCreateView.as_view()),
     path('discipline/list', DisciplineListView.as_view()),
     path('discipline/<int:pk>', DisciplineDetailView.as_view()),

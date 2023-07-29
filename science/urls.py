@@ -10,7 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('server.urls')),
     path('swagger-ui/', TemplateView.as_view(
-        template_name='docs.html',
-        extra_context={'schema_url': 'openapi-schema'}
+      template_name='docs.html',
+      extra_context={'schema_url': 'openapi-schema'}
     ), name='swagger-ui'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

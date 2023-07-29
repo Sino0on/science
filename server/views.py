@@ -1,7 +1,4 @@
-from django.shortcuts import render
-from .models import Person
 from django.conf import settings
-from rest_framework import generics, status
 from rest_framework import generics, filters as fr, status
 from .serializers import *
 from django_filters import rest_framework as filters
@@ -100,26 +97,31 @@ class TokenVerifyCustomView(TokenVerifyView):
 
 
 class CityCreateView(generics.CreateAPIView):
+    queryset = City.objects.all()
     serializer_class = CitySerializer
     permission_classes = (IsAdminUser,)
 
 
 class ProjectCreateView(generics.CreateAPIView):
+    queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     permission_classes = (IsAdminUser,)
 
 
 class ProfessionCreateView(generics.CreateAPIView):
+    queryset = Profession.objects.all()
     serializer_class = ProfessionSerializer
     permission_classes = (IsAdminUser,)
 
 
 class MaterialCreateView(generics.CreateAPIView):
+    queryset = Material.objects.all()
     serializer_class = MaterialSerializer
     permission_classes = (IsAdminUser,)
 
 
 class ScienceCreateView(generics.CreateAPIView):
+    queryset = Science.objects.all()
     serializer_class = ScienceSerializer
     permission_classes = (IsAdminUser,)
 
