@@ -14,6 +14,12 @@ class CitySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class CountrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Country
+        fields = '__all__'
+
+
 class ProfessionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profession
