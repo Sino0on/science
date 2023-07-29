@@ -160,31 +160,37 @@ class ScienceListView(generics.ListAPIView):
 
 
 class CityDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = City.objects.all()
     serializer_class = CitySerializer
     lookup_field = 'pk'
 
 
 class ProjectDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     lookup_field = 'pk'
 
 
 class ProfessionDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Profession.objects.all()
     serializer_class = ProfessionSerializer
     lookup_field = 'pk'
 
 
 class MaterialDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Material.objects.all()
     serializer_class = MaterialSerializer
     lookup_field = 'pk'
 
 
 class ScienceDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Science.objects.all()
     serializer_class = ScienceSerializer
     lookup_field = 'pk'
 
 
 class DisciplineDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Discipline.objects.all()
     serializer_class = DisciplineSerializer
     lookup_field = 'pk'
 
@@ -205,16 +211,19 @@ class CountryListView(generics.ListAPIView):
 
 
 class DisciplineCreateView(generics.CreateAPIView):
+    queryset = Discipline.objects.all()
     serializer_class = DisciplineSerializer
     permission_classes = (IsAuthenticated,)
 
 
 class CountryCreateView(generics.CreateAPIView):
+    queryset = Country.objects.all()
     serializer_class = CountrySerializer
     permission_classes = (IsAdminUser,)
 
 
 class PersonDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Person.objects.all()
     serializer_class = PersonListSerializer
     lookup_field = 'pk'
 
