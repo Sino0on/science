@@ -72,7 +72,6 @@ class AuthorListSerializer(serializers.ModelSerializer):
 
 
 class PersonListSerializer(serializers.ModelSerializer):
-    author = AuthorListSerializer()
 
     class Meta:
         model = Person
