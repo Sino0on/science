@@ -183,7 +183,7 @@ class MaterialDetailView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'pk'
 
 
-class MaterialDetail2View(generics.RetrieveUpdateDestroyAPIView):
+class MaterialDetail2View(generics.RetrieveAPIView):
     queryset = Material.objects.all()
     serializer_class = MaterialListSerializer
     lookup_field = 'pk'
