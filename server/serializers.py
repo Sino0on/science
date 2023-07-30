@@ -5,7 +5,11 @@ from .models import *
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields = ['username', 'first_name', 'last_name', 'email', 'password', 'science', 'profession']
+        fields = ['username', 'first_name', 'last_name',
+                  'email', 'password', 'science',
+                  'profession', 'photo', 'phone',
+                  'city', 'twitter', 'facebook',
+                  'youtube']
 
 
 class CitySerializer(serializers.ModelSerializer):

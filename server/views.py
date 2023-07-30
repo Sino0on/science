@@ -25,12 +25,18 @@ class PersonCreateView(generics.CreateAPIView):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             user = Person.objects.create(
-                username=serializer.validated_data['username'],
-                first_name=serializer.validated_data['first_name'],
-                last_name=serializer.validated_data['last_name'],
-                email=serializer.validated_data['email'],
-                profession=serializer.validated_data['profession'],
+                username=serializer.validated_data.get('username', None),
+                first_name=serializer.validated_data.get('first_name', None),
+                last_name=serializer.validated_data.get('last_name', None),
+                email=serializer.validated_data.get('email', None),
+                profession=serializer.validated_data.get('profession', None),
                 science=serializer.validated_data.get('science', None),
+                photo=serializer.validated_data.get('photo', None),
+                phone=serializer.validated_data.get('phone', None),
+                city=serializer.validated_data.get('city', None),
+                twitter=serializer.validated_data.get('twitter', None),
+                facebook=serializer.validated_data.get('facebook', None),
+                youtube=serializer.validated_data.get('youtube', None),
             )
             user.set_password(serializer.validated_data['password'])
             try:
