@@ -30,7 +30,7 @@ class PersonCreateView(generics.CreateAPIView):
                 last_name=serializer.validated_data['last_name'],
                 email=serializer.validated_data['email'],
                 profession=serializer.validated_data['profession'],
-                science=serializer.validated_data['science'],
+                science=serializer.validated_data.get('science', None),
             )
             user.set_password(serializer.validated_data['password'])
             try:

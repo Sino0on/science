@@ -156,6 +156,7 @@ class Author(models.Model):
     def save(
         self, force_insert=False, force_update=False, using=None, update_fields=None
     ):
+
         if self.person:
             self.first_name = self.person.first_name
             self.middle_name = self.person.middle_name
@@ -184,8 +185,22 @@ class Project(models.Model):
     members = models.ManyToManyField(Author, verbose_name='Участники', related_name='projects')
     image = models.ImageField(upload_to='images/project/%Y/%m/%d/', blank=True, null=True, verbose_name='Изображение')
 
+    def __init__(self, *args, **kwargs):
+        print(args)
+        self.request = kwargs.pop('request', None)
+        super(Project, self).__init__(*args, **kwargs)
+
     def __str__(self):
         return f'{self.title}'
+
+    def save(
+        self, force_insert=False, force_update=False, using=None,
+            update_fields=None, **kwargs):
+        request = self.request
+        print(request)
+        if request:
+            print(request.user)
+        return super().save()
 
     class Meta:
         verbose_name = 'Проект'

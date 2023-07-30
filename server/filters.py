@@ -23,4 +23,4 @@ class PersonFilter(django_filters.FilterSet):
 class AuthorFilter(django_filters.FilterSet):
     class Meta:
         model = Author
-        fields = ['id', 'first_name', 'last_name', 'middle_name']
+        fields = ['id', 'first_name', 'last_name', 'middle_name', 'person']
