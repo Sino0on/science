@@ -147,7 +147,7 @@ class ProfessionListView(generics.ListAPIView):
 
 class MaterialListView(generics.ListAPIView):
     queryset = Material.objects.all()
-    serializer_class = MaterialSerializer
+    serializer_class = MaterialListSerializer
     filter_backends = (filters.DjangoFilterBackend, fr.OrderingFilter)
     filterset_class = MaterialFilter
     # ordering_fields = ['price', 'likes']
@@ -180,6 +180,12 @@ class ProfessionDetailView(generics.RetrieveUpdateDestroyAPIView):
 class MaterialDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Material.objects.all()
     serializer_class = MaterialSerializer
+    lookup_field = 'pk'
+
+
+class MaterialDetail2View(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Material.objects.all()
+    serializer_class = MaterialListSerializer
     lookup_field = 'pk'
 
 

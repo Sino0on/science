@@ -80,7 +80,14 @@ class PersonListSerializer(serializers.ModelSerializer):
 
 
 class MaterialSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Material
+        fields = '__all__'
+
+
+class MaterialListSerializer(serializers.ModelSerializer):
     authors = AuthorSerializer(many=True)
+    disciplines = DisciplineSerializer(many=True)
     class Meta:
         model = Material
         fields = '__all__'

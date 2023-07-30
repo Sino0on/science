@@ -21,6 +21,7 @@ urlpatterns = [
     path('material/create', MaterialCreateView.as_view()),
     path('material/list', MaterialListView.as_view()),
     path('material/<int:pk>', MaterialDetailView.as_view()),
+    path('material/detail/<int:pk>', MaterialDetail2View.as_view()),
     path('discipline/create', DisciplineCreateView.as_view()),
     path('discipline/list', DisciplineListView.as_view()),
     path('discipline/<int:pk>', DisciplineDetailView.as_view()),
