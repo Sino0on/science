@@ -12,6 +12,7 @@ urlpatterns = [
     path('project/create', ProjectCreateView.as_view()),
     path('project/list', ProjectListView.as_view()),
     path('project/<int:pk>', ProjectDetailView.as_view()),
+    path('project/detail/<int:pk>', ProjectDetail2View.as_view()),
     path('profession/create', ProfessionCreateView.as_view()),
     path('profession/list', ProfessionListView.as_view()),
     path('profession/<int:pk>', ProfessionDetailView.as_view()),

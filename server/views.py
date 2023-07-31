@@ -254,3 +254,10 @@ class AuthorListView(generics.ListAPIView):
     serializer_class = AuthorSerializer
     filter_backends = (filters.DjangoFilterBackend, fr.OrderingFilter)
     filterset_class = AuthorFilter
+
+
+class ProjectDetail2View(generics.RetrieveAPIView):
+    queryset = Project.objects.all()
+    lookup_field = 'pk'
+    serializer_class = ProjectListSerializer
+

@@ -42,9 +42,6 @@ class ScienceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
-
-
 class DisciplineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Discipline
@@ -91,6 +88,15 @@ class MaterialSerializer(serializers.ModelSerializer):
 class MaterialListSerializer(serializers.ModelSerializer):
     authors = AuthorSerializer(many=True)
     disciplines = DisciplineSerializer(many=True)
+
     class Meta:
         model = Material
+        fields = '__all__'
+
+
+class ProjectListSerializer(serializers.ModelSerializer):
+    materials = MaterialListSerializer(source='materials')
+
+    class Meta:
+        model = Project
         fields = '__all__'
