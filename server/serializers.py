@@ -95,7 +95,7 @@ class MaterialListSerializer(serializers.ModelSerializer):
 
 
 class ProjectListSerializer(serializers.ModelSerializer):
-    materials = MaterialListSerializer(source='materials')
+    project_materials = MaterialListSerializer(source='materials')
 
     class Meta:
         model = Project
