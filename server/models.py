@@ -105,8 +105,7 @@ class Person(AbstractUser):
         blank=True,
         null=True
     )
-    phone = models.ForeignKey(
-        Phone, models.SET_NULL,
+    phone = models.PositiveIntegerField(
         blank=True,
         null=True,
         verbose_name='Номер телефона'
