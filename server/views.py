@@ -105,31 +105,31 @@ class TokenVerifyCustomView(TokenVerifyView):
 class CityCreateView(generics.CreateAPIView):
     queryset = City.objects.all()
     serializer_class = CitySerializer
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAuthenticated,)
 
 
 class ProjectCreateView(generics.CreateAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAuthenticated,)
 
 
 class ProfessionCreateView(generics.CreateAPIView):
     queryset = Profession.objects.all()
     serializer_class = ProfessionSerializer
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAuthenticated,)
 
 
 class MaterialCreateView(generics.CreateAPIView):
     queryset = Material.objects.all()
     serializer_class = MaterialSerializer
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAuthenticated,)
 
 
 class ScienceCreateView(generics.CreateAPIView):
     queryset = Science.objects.all()
     serializer_class = ScienceSerializer
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAuthenticated,)
 
 
 class CityListView(generics.ListAPIView):
@@ -231,7 +231,7 @@ class DisciplineCreateView(generics.CreateAPIView):
 class CountryCreateView(generics.CreateAPIView):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAuthenticated,)
 
 
 class PersonDetailView(generics.RetrieveUpdateDestroyAPIView):
