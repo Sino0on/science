@@ -80,6 +80,7 @@ class PersonListSerializer(serializers.ModelSerializer):
 
 
 class MaterialSerializer(serializers.ModelSerializer):
+    pdf = serializers.FileField()
     class Meta:
         model = Material
         fields = '__all__'
