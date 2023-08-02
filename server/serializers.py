@@ -58,6 +58,10 @@ class MaterialListSerializer(serializers.ModelSerializer):
     authors = AuthorSerializer(many=True)
     disciplines = DisciplineSerializer(many=True)
 
+    def create(self, validated_data):
+        print(validated_data)
+        return super().create(validated_data)
+
     class Meta:
         model = Material
         fields = '__all__'
