@@ -214,8 +214,8 @@ class Material(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     description = models.TextField(verbose_name='Описание')
     authors = models.ManyToManyField(Author, verbose_name='Авторы', related_name='materials')
-    pdf = models.FileField(upload_to='files/materials/%Y/%m/%d/', verbose_name='PDF файл')
-    youtube = models.URLField(verbose_name='Ютуб ссылка')
+    pdf = models.FileField(upload_to='files/materials/%Y/%m/%d/', verbose_name='PDF файл', blank=True, null=True)
+    youtube = models.URLField(verbose_name='Ютуб ссылка', blank=True, null=True)
     image = models.ImageField(upload_to='images/materials/%Y/%m/%d/', blank=True, null=True, verbose_name='Название')
 
     def __str__(self):
