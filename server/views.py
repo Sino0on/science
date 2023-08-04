@@ -263,7 +263,6 @@ class ProjectDetail2View(generics.RetrieveAPIView):
 
 
 class ChatFinder(generics.GenericAPIView):
-    serializer_class = ChatFindSerializer
     lookup_field = 'pk'
 
     def post(self, request, *args, **kwargs):
