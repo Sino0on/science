@@ -276,7 +276,7 @@ class ChatFinder(generics.GenericAPIView):
     def get(self, request, *args, **kwargs):
         print(request.user)
         user = request.user
-        queryset = [user, Person.objects.get(pk=int(self.lookup_field))]
+        queryset = [user, Person.objects.get(pk=self.lookup_field)]
         chat = Chat.object.get(members=queryset)
         if chat:
             chat_data = ChatSerializer(chat)
