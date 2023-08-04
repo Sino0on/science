@@ -105,3 +105,24 @@ class ProjectListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = '__all__'
+
+
+class ChatFindSerializer(serializers.Serializer):
+    members = serializers.PrimaryKeyRelatedField(many=True, queryset=Person.objects.all())
+
+    class Meta:
+        fields = ['members']
+
+
+class MessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = '__all__'
+
+
+class ChatSerializer(serializers.ModelSerializer):
+    messages = MessageSerializer(many=True, source='messages_chat')
+
+    class Meta:
+        model = Chat
+        fields = '__all__'

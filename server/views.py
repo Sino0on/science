@@ -261,3 +261,23 @@ class ProjectDetail2View(generics.RetrieveAPIView):
     lookup_field = 'pk'
     serializer_class = ProjectListSerializer
 
+
+class ChatFinder(generics.GenericAPIView):
+    serializer_class = ChatFindSerializer
+
+    def post(self, request, *args, **kwargs):
+        print(request.user)
+        data = self.get_serializer(data=request.data)
+        data.is_valid(raise_exception=True)
+        queryset = data.validated_data.get('members', [])
+        chat = Chat.object.get(members=queryset)
+        if chat:
+            chat_data = ChatSerializer(chat)
+            chat_data.is_valid(raise_exception=True)
+            return Response(data=chat_data.data, status=status.HTTP_200_OK)
+        else:
+            chat = Chat.objects.create(members=queryset)
+            chat_data = ChatSerializer(chat)
+            chat_data.is_valid(raise_exception=True)
+            return Response(data=chat_data.data, status=status.HTTP_200_OK)
+

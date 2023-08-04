@@ -226,3 +226,21 @@ class Material(models.Model):
         verbose_name_plural = 'Материалы'
 
 
+class Chat(models.Model):
+    title = models.CharField(max_length=123, blank=True, null=True)
+    members = models.ManyToManyField(Person)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title} {self.members}'
+
+
+class Message(models.Model):
+    text = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+    sender = models.ForeignKey(Person, on_delete=models.SET_NULL, null=True)
+    chat = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name='messages_chat')
+
+    def __str__(self):
+        return f'{self.text[:10]} {self.sender}'
+
