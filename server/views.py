@@ -264,6 +264,7 @@ class ProjectDetail2View(generics.RetrieveAPIView):
 
 class ChatFinder(generics.GenericAPIView):
     lookup_field = 'pk'
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
         print(request.user)
