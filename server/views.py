@@ -264,12 +264,12 @@ class ProjectDetail2View(generics.RetrieveAPIView):
 
 class ChatFinder(generics.GenericAPIView):
     serializer_class = ChatFindSerializer
+    lookup_field = 'pk'
 
     def post(self, request, *args, **kwargs):
         print(request.user)
-        data = self.get_serializer(data=request.data)
-        data.is_valid(raise_exception=True)
-        queryset = data.validated_data.get('members', [])
+        user = request.user
+        queryset = [user, Person.objects.get(id=self.lookup_field)]
         chat = Chat.object.get(members=queryset)
         if chat:
             chat_data = ChatSerializer(chat)
