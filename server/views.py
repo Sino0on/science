@@ -256,6 +256,12 @@ class AuthorListView(generics.ListAPIView):
     filterset_class = AuthorFilter
 
 
+class AuthorDetailView(generics.RetrieveAPIView):
+    queryset = Author.objects.all()
+    lookup_field = 'pk'
+    serializer_class = AuthorListSerializer
+
+
 class ProjectDetail2View(generics.RetrieveAPIView):
     queryset = Project.objects.all()
     lookup_field = 'pk'

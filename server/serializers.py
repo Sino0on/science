@@ -67,19 +67,20 @@ class MaterialListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class AuthorListSerializer(serializers.ModelSerializer):
-    my_projects = ProjectSerializer(source='projects', many=True)
-    my_materials = ProjectSerializer(source='materials', many=True)
-
-    class Meta:
-        model = Author
-        fields = '__all__'
-
-
 class PersonListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Person
+        fields = '__all__'
+
+
+class AuthorListSerializer(serializers.ModelSerializer):
+    my_projects = ProjectSerializer(source='projects', many=True)
+    my_materials = ProjectSerializer(source='materials', many=True)
+    person = PersonListSerializer()
+
+    class Meta:
+        model = Author
         fields = '__all__'
 
 
