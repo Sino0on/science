@@ -270,22 +270,26 @@ class ProjectDetail2View(generics.RetrieveAPIView):
 
 class ChatFinder(generics.GenericAPIView):
     serializer_class = ChatFindSerializer
-    lookup_field = 'pk'
+    lookup_field = 'id'
     permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
         print(request.user)
         user = request.user
-        print(self.lookup_field)
-        queryset = [user, Person.objects.get(pk=self.lookup_field)]
-        chat = Chat.object.get(members=queryset)
+        lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
+        filter_kwargs = {self.lookup_field: self.kwargs[lookup_url_kwarg]}
+        print(filter_kwargs)
+        queryset = [user, Person.objects.get(pk=filter_kwargs['id'])]
+        chat = Chat.objects.filter(members__in=queryset)
+        print('ok')
         if chat:
-            chat_data = ChatSerializer(chat)
-            chat_data.is_valid(raise_exception=True)
+            print('Nice')
+            chat_data = ChatSerializer(instance=chat[0])
             return Response(data=chat_data.data, status=status.HTTP_200_OK)
         else:
-            chat = Chat.objects.create(members=queryset)
-            chat_data = ChatSerializer(chat)
-            chat_data.is_valid(raise_exception=True)
+            chat = Chat.objects.create()
+            chat.members.set(queryset)
+            chat.save()
+            chat_data = ChatSerializer(instance=chat[0])
             return Response(data=chat_data.data, status=status.HTTP_200_OK)
 

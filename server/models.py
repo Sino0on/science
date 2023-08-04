@@ -228,7 +228,7 @@ class Material(models.Model):
 
 class Chat(models.Model):
     title = models.CharField(max_length=123, blank=True, null=True)
-    members = models.ManyToManyField(Person)
+    members = models.ManyToManyField(Person, blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
