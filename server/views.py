@@ -298,3 +298,9 @@ class ChatListView(generics.ListAPIView):
     def get_queryset(self):
         return Chat.objects.filter(members=self.request.user)
 
+
+class ChatDetailView(generics.RetrieveDestroyAPIView):
+    queryset = Chat.objects.all()
+    lookup_field = 'pk'
+    serializer_class = ChatSerializer
+    permission_classes = [IsAuthenticated]

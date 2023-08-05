@@ -34,5 +34,6 @@ urlpatterns = [
     path('country/create', CountryCreateView.as_view()),
     path('country/list', CountryListView.as_view()),
     path('country/<int:pk>', CountryDetailView.as_view()),
+    path('chat/<int:pk>', ChatDetailView.as_view()),
     path('find/chat/<int:id>', ChatFinder.as_view()),
 ]
