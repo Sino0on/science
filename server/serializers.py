@@ -42,9 +42,6 @@ class ScienceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
-
-
 class DisciplineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Discipline

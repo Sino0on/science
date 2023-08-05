@@ -243,10 +243,6 @@ class PersonDetailView(generics.RetrieveUpdateDestroyAPIView):
 class PersonListView(generics.ListAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonListSerializer
-    filter_backends = (filters.DjangoFilterBackend, fr.OrderingFilter)
-    filterset_class = PersonFilter
-    # ordering_fields = ['price', 'likes']
-    pagination_class = MyCustomPagination
 
 
 class AuthorListView(generics.ListAPIView):
