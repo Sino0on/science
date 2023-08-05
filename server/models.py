@@ -105,8 +105,7 @@ class Person(AbstractUser):
         blank=True,
         null=True
     )
-    phone = models.ForeignKey(
-        Phone, models.SET_NULL,
+    phone = models.PositiveIntegerField(
         blank=True,
         null=True,
         verbose_name='Номер телефона'
@@ -215,8 +214,8 @@ class Material(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     description = models.TextField(verbose_name='Описание')
     authors = models.ManyToManyField(Author, verbose_name='Авторы', related_name='materials')
-    pdf = models.FileField(upload_to='files/materials/%Y/%m/%d/', verbose_name='PDF файл')
-    youtube = models.URLField(verbose_name='Ютуб ссылка')
+    pdf = models.FileField(upload_to='files/materials/%Y/%m/%d/', verbose_name='PDF файл', blank=True, null=True)
+    youtube = models.URLField(verbose_name='Ютуб ссылка', blank=True, null=True)
     image = models.ImageField(upload_to='images/materials/%Y/%m/%d/', blank=True, null=True, verbose_name='Название')
 
     def __str__(self):
@@ -226,4 +225,22 @@ class Material(models.Model):
         verbose_name = 'Материал'
         verbose_name_plural = 'Материалы'
 
+
+class Chat(models.Model):
+    title = models.CharField(max_length=123, blank=True, null=True)
+    members = models.ManyToManyField(Person, blank=True, null=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title} {self.members}'
+
+
+class Message(models.Model):
+    text = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+    sender = models.ForeignKey(Person, on_delete=models.SET_NULL, null=True)
+    chat = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name='messages_chat')
+
+    def __str__(self):
+        return f'{self.text[:10]} {self.sender}'
 

@@ -58,17 +58,12 @@ class MaterialListSerializer(serializers.ModelSerializer):
     authors = AuthorSerializer(many=True)
     disciplines = DisciplineSerializer(many=True)
 
+    def create(self, validated_data):
+        print(validated_data)
+        return super().create(validated_data)
+
     class Meta:
         model = Material
-        fields = '__all__'
-
-
-class AuthorListSerializer(serializers.ModelSerializer):
-    my_projects = ProjectSerializer(source='projects', many=True)
-    my_materials = ProjectSerializer(source='materials', many=True)
-
-    class Meta:
-        model = Author
         fields = '__all__'
 
 
@@ -79,7 +74,18 @@ class PersonListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class AuthorListSerializer(serializers.ModelSerializer):
+    my_projects = ProjectSerializer(source='projects', many=True)
+    my_materials = ProjectSerializer(source='materials', many=True)
+    person = PersonListSerializer()
+
+    class Meta:
+        model = Author
+        fields = '__all__'
+
+
 class MaterialSerializer(serializers.ModelSerializer):
+    pdf = serializers.FileField()
     class Meta:
         model = Material
         fields = '__all__'
@@ -88,6 +94,42 @@ class MaterialSerializer(serializers.ModelSerializer):
 class MaterialListSerializer(serializers.ModelSerializer):
     authors = AuthorSerializer(many=True)
     disciplines = DisciplineSerializer(many=True)
+
     class Meta:
         model = Material
+        fields = '__all__'
+
+
+class ProjectListSerializer(serializers.ModelSerializer):
+    project_materials = MaterialListSerializer(source='materials')
+
+    class Meta:
+        model = Project
+        fields = '__all__'
+
+
+class ChatFindSerializer(serializers.Serializer):
+    members = serializers.PrimaryKeyRelatedField(many=True, queryset=Person.objects.all())
+
+    class Meta:
+        fields = ['members']
+
+
+class MessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = '__all__'
+
+
+class ChatSerializer(serializers.ModelSerializer):
+    messages = MessageSerializer(many=True, source='messages_chat')
+
+    class Meta:
+        model = Chat
+        fields = '__all__'
+
+
+class Chat2Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Chat
         fields = '__all__'

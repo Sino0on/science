@@ -105,31 +105,31 @@ class TokenVerifyCustomView(TokenVerifyView):
 class CityCreateView(generics.CreateAPIView):
     queryset = City.objects.all()
     serializer_class = CitySerializer
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAuthenticated,)
 
 
 class ProjectCreateView(generics.CreateAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAuthenticated,)
 
 
 class ProfessionCreateView(generics.CreateAPIView):
     queryset = Profession.objects.all()
     serializer_class = ProfessionSerializer
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAuthenticated,)
 
 
 class MaterialCreateView(generics.CreateAPIView):
     queryset = Material.objects.all()
     serializer_class = MaterialSerializer
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAuthenticated,)
 
 
 class ScienceCreateView(generics.CreateAPIView):
     queryset = Science.objects.all()
     serializer_class = ScienceSerializer
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAuthenticated,)
 
 
 class CityListView(generics.ListAPIView):
@@ -231,7 +231,7 @@ class DisciplineCreateView(generics.CreateAPIView):
 class CountryCreateView(generics.CreateAPIView):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAuthenticated,)
 
 
 class PersonDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -250,3 +250,51 @@ class AuthorListView(generics.ListAPIView):
     serializer_class = AuthorSerializer
     filter_backends = (filters.DjangoFilterBackend, fr.OrderingFilter)
     filterset_class = AuthorFilter
+
+
+class AuthorDetailView(generics.RetrieveAPIView):
+    queryset = Author.objects.all()
+    lookup_field = 'pk'
+    serializer_class = AuthorListSerializer
+
+
+class ProjectDetail2View(generics.RetrieveAPIView):
+    queryset = Project.objects.all()
+    lookup_field = 'pk'
+    serializer_class = ProjectListSerializer
+
+
+class ChatFinder(generics.GenericAPIView):
+    serializer_class = ChatFindSerializer
+    lookup_field = 'id'
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        print(request.user)
+        user = request.user
+        lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
+        filter_kwargs = {self.lookup_field: self.kwargs[lookup_url_kwarg]}
+        print(filter_kwargs)
+        queryset = [user, Person.objects.get(pk=filter_kwargs['id'])]
+        chat = Chat.objects.filter(members__in=queryset)
+        print('ok')
+        if chat:
+            print('Nice')
+            chat_data = ChatSerializer(instance=chat[0])
+            return Response(data=chat_data.data, status=status.HTTP_200_OK)
+        else:
+            chat = Chat.objects.create()
+            chat.members.set(queryset)
+            chat.save()
+            chat_data = ChatSerializer(instance=chat[0])
+            return Response(data=chat_data.data, status=status.HTTP_200_OK)
+
+
+class ChatListView(generics.ListAPIView):
+    queryset = Chat.objects.all()
+    serializer_class = Chat2Serializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Chat.objects.filter(members=self.request.user)
+
