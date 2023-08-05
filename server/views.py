@@ -293,3 +293,12 @@ class ChatFinder(generics.GenericAPIView):
             chat_data = ChatSerializer(instance=chat[0])
             return Response(data=chat_data.data, status=status.HTTP_200_OK)
 
+
+class ChatListView(generics.ListAPIView):
+    queryset = Chat.objects.all()
+    serializer_class = Chat2Serializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Chat.objects.filter(members__in=self.request)
+

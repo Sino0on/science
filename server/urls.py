@@ -29,6 +29,7 @@ urlpatterns = [
     path('discipline/<int:pk>', DisciplineDetailView.as_view()),
     path('person/list', PersonListView.as_view()),
     path('authors/list', AuthorListView.as_view()),
+    path('chat/list', ChatListView.as_view()),
     path('country/create', CountryCreateView.as_view()),
     path('country/list', CountryListView.as_view()),
     path('country/<int:pk>', CountryDetailView.as_view()),
