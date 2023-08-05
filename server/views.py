@@ -300,5 +300,5 @@ class ChatListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Chat.objects.filter(members__in=self.request)
+        return Chat.objects.filter(members__in=self.request.user)
 
