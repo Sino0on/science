@@ -18,6 +18,7 @@ class ChatConsumers(WebsocketConsumer):
 
     def receive(self, text_data):
         print(self.channel_name)
+
         text_data_json = json.loads(text_data)
         print(text_data_json)
 
