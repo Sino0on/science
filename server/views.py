@@ -284,7 +284,7 @@ class ChatFinder(generics.GenericAPIView):
             return Response(data=chat_data.data, status=status.HTTP_200_OK)
         else:
             chat = Chat.objects.create()
-            chat.members.set(queryset)
+            chat.members.add(queryset)
             chat.save()
             chat_data = ChatSerializer(instance=chat[0])
             return Response(data=chat_data.data, status=status.HTTP_200_OK)
