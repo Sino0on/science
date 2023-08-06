@@ -15,6 +15,7 @@ from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from .filters import ProjectFilter, MaterialFilter, PersonFilter, AuthorFilter
 from .paginations import MyCustomPagination
+from django.db.models import Count
 
 
 class PersonCreateView(generics.CreateAPIView):
@@ -275,8 +276,21 @@ class ChatFinder(generics.GenericAPIView):
         lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
         filter_kwargs = {self.lookup_field: self.kwargs[lookup_url_kwarg]}
         print(filter_kwargs)
-        queryset = [user, Person.objects.get(pk=filter_kwargs['id'])]
-        chat = Chat.objects.filter(members__in=queryset)
+        queryset = Person.objects.filter(pk__in=[user.pk, filter_kwargs['id']])
+        print(queryset)
+
+        chat_ids = (
+            Chat.objects.annotate(count_members=Count('members'))
+                .filter(count_members=len(queryset))
+                .filter(members__in=queryset)
+                .values_list('id', flat=True)
+        )
+
+        chat = Chat.objects.filter(
+            members__in=queryset
+        ).annotate(count_members=Count('members')).filter(count_members=len(queryset))
+
+        print(chat)
         print('ok')
         if chat:
             print('Nice')
@@ -284,9 +298,10 @@ class ChatFinder(generics.GenericAPIView):
             return Response(data=chat_data.data, status=status.HTTP_200_OK)
         else:
             chat = Chat.objects.create()
-            chat.members.add(queryset)
+            for i in queryset:
+                chat.members.add(i)
             chat.save()
-            chat_data = ChatSerializer(instance=chat[0])
+            chat_data = ChatSerializer(instance=chat)
             return Response(data=chat_data.data, status=status.HTTP_200_OK)
 
 
