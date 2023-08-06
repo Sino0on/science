@@ -3,10 +3,12 @@ import json
 from channels.generic.websocket import WebsocketConsumer
 from asgiref.sync import async_to_sync
 from .models import *
+from .serializers import MessageSerializer
 
 
 class ChatConsumers(WebsocketConsumer):
     def connect(self):
+        print(self.scope["user"])
         self.room_group_name = self.scope["url_route"]["kwargs"]["pk"]
         print(self.room_group_name)
 
@@ -18,9 +20,15 @@ class ChatConsumers(WebsocketConsumer):
 
     def receive(self, text_data):
         print(self.channel_name)
-
         text_data_json = json.loads(text_data)
-        print(text_data_json)
+        # print(text_data_json)
+        # message = Message.objects.create(
+        #     text=text_data['message']['text'],
+        #     sender__id=text_data['sender'],
+        #     chat__id=self.room_group_name
+        # )
+        # print(message)
+        # message_data = MessageSerializer(instance=message)
 
 
         async_to_sync(self.channel_layer.group_send)(
@@ -41,6 +49,15 @@ class ChatConsumers(WebsocketConsumer):
         # mess = message
         # now = datetime.datetime.now()
 
+        message = Message.objects.create(
+            text=event["result"]['message']['text'],
+            sender=Person.objects.get(pk=event["result"]['sender']),
+            chat=Chat.objects.get(pk=self.room_group_name)
+        )
+        print(message)
+        message_data = MessageSerializer(instance=message)
+        print(message_data.data)
         self.send(text_data=json.dumps(
-            event
+            message_data.data,
+            ensure_ascii=False
         ))
