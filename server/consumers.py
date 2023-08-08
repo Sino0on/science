@@ -21,21 +21,21 @@ class ChatConsumers(WebsocketConsumer):
     def receive(self, text_data):
         print(self.channel_name)
         text_data_json = json.loads(text_data)
-        # print(text_data_json)
-        # message = Message.objects.create(
-        #     text=text_data['message']['text'],
-        #     sender__id=text_data['sender'],
-        #     chat__id=self.room_group_name
-        # )
-        # print(message)
-        # message_data = MessageSerializer(instance=message)
+        print(text_data_json)
+        message = Message.objects.create(
+            text=text_data_json['message']['text'],
+            sender=Person.objects.get(pk=text_data_json['sender']),
+            chat=Chat.objects.get(pk=self.room_group_name)
+        )
+        print(message)
+        message_data = MessageSerializer(instance=message)
 
 
         async_to_sync(self.channel_layer.group_send)(
             self.room_group_name,
             {
                 'type': 'chat_message',
-                'result': text_data_json,
+                'result': message_data.data,
 
             }
         )
@@ -49,15 +49,15 @@ class ChatConsumers(WebsocketConsumer):
         # mess = message
         # now = datetime.datetime.now()
 
-        message = Message.objects.create(
-            text=event["result"]['message']['text'],
-            sender=Person.objects.get(pk=event["result"]['sender']),
-            chat=Chat.objects.get(pk=self.room_group_name)
-        )
-        print(message)
-        message_data = MessageSerializer(instance=message)
-        print(message_data.data)
+        # message = Message.objects.create(
+        #     text=event["result"]['message']['text'],
+        #     sender=Person.objects.get(pk=event["result"]['sender']),
+        #     chat=Chat.objects.get(pk=self.room_group_name)
+        # )
+        # print(message)
+        # message_data = MessageSerializer(instance=message)
+        # print(message_data.data)
         self.send(text_data=json.dumps(
-            message_data.data,
+            event,
             ensure_ascii=False
         ))
