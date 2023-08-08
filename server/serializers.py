@@ -116,6 +116,15 @@ class ChatFindSerializer(serializers.Serializer):
 
 
 class MessageSerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        print(representation)
+        data = {
+            "type": "chat_message",
+            "result": representation
+        }
+        return data
+
     class Meta:
         model = Message
         fields = '__all__'

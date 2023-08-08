@@ -318,4 +318,4 @@ class ChatDetailView(generics.RetrieveDestroyAPIView):
     queryset = Chat.objects.all()
     lookup_field = 'pk'
     serializer_class = ChatSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]

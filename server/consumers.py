@@ -33,11 +33,7 @@ class ChatConsumers(WebsocketConsumer):
 
         async_to_sync(self.channel_layer.group_send)(
             self.room_group_name,
-            {
-                'type': 'chat_message',
-                'result': message_data.data,
-
-            }
+            message_data.data
         )
 
     def chat_message(self, event):
