@@ -23,8 +23,8 @@ class ChatConsumers(WebsocketConsumer):
         text_data_json = json.loads(text_data)
         print(text_data_json)
         message = Message.objects.create(
-            text=text_data_json['message']['text'],
-            sender=Person.objects.get(pk=text_data_json['sender']),
+            text=text_data_json['result']['text'],
+            sender=Person.objects.get(pk=text_data_json['result']['sender']),
             chat=Chat.objects.get(pk=self.room_group_name)
         )
         print(message)
