@@ -1,0 +1,273 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="signup">
+            <div class="container">
+                <h2 class="signup-title">Регистрация</h2>
+                <form   class="signup-content">
+                    <span class="signup-text">Образование</span>
+                    <div
+                        class="dropdown"
+                    >
+                        <div
+                            class="dropdown-active"
+                        >
+                            q   wertyui[]
+                            <svg
+                                width="24"
+                                height="25"
+                                viewBox="0 0 24 25"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M6 9.75L12 15.75L18 9.75"
+                                    stroke="#010E52"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </div>
+                        <div
+                            class="dropdown-wrapper"
+                        >
+                            <div
+                                class="dropdown-item"
+                            >
+                              asdfghjkl;'
+                              '
+                            </div>
+                        </div>
+                    </div>
+                    <span class="signup-text">Специальность</span>
+                    <div
+                        class="dropdown"
+                    >
+                        <div
+                            class="dropdown-active"
+                        >
+
+                            <svg
+                                width="24"
+                                height="25"
+                                viewBox="0 0 24 25"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M6 9.75L12 15.75L18 9.75"
+                                    stroke="#010E52"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </div>
+                        <div
+                            v-show="isActiveScience"
+                            class="dropdown-wrapper"
+                            :class="{ active: isActiveScience }"
+                        >
+                            <div
+                                class="dropdown-item"
+                            >
+                                qweryo
+                            </div>
+                        </div>
+                    </div>
+                    <span class="signup-text">Логин</span>
+                    <label class="signup-label">
+                        <input
+                            type="text"
+                            placeholder="Введите"
+                            class="signup-input"
+                            required
+                        />
+                    </label>
+                    <span class="signup-text">Имя</span>
+                    <label class="signup-label">
+                        <input
+                            type="text"
+                            placeholder="Введите"
+                            class="signup-input"
+                            required
+                        />
+                    </label>
+                    <span class="signup-text">Фамилия</span>
+                    <label class="signup-label">
+                        <input
+                            type="text"
+                            placeholder="Введите"
+                            class="signup-input"
+                            required
+                        />
+                    </label>
+                    <span class="signup-text">Электронная почта</span>
+                    <label class="signup-label">
+                        <input
+                            type="email"
+                            placeholder="Введите"
+                            class="signup-input"
+                            required
+                        />
+                    </label>
+                    <span class="signup-text">Номер телефона</span>
+                    <label class="signup-label">
+                        <input
+                            type="number"
+                            placeholder="Введите"
+                            class="signup-input"
+                            required
+                        />
+                    </label>
+                    <span class="signup-text">Город</span>
+                    <div
+                        @click="isActiveCity = !isActiveCity"
+                        :class="{ active: isActiveCity }"
+                        class="dropdown"
+                    >
+                        <div
+                            class="dropdown-active"
+                            :class="{ active: isActiveCity }"
+                        >
+                            <svg
+                                :class="{ active: isActiveCity }"
+                                width="24"
+                                height="25"
+                                viewBox="0 0 24 25"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M6 9.75L12 15.75L18 9.75"
+                                    stroke="#010E52"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </div>
+                        <div
+                            class="dropdown-wrapper"
+                        >
+                            <div
+                                class="dropdown-item"
+                            >
+                                qwertyuiol
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <label class="signup-label">
+                  <input type="text" placeholder="Введите" class="signup-input" required v-model="city" />
+                </label> -->
+                    <span class="signup-text">twitter</span>
+                    <label class="signup-label">
+                        <input
+                            type="text"
+                            placeholder="Введите ссылку"
+                            class="signup-input"
+                            required
+                        />
+                    </label>
+                    <span class="signup-text">facebook</span>
+                    <label class="signup-label">
+                        <input
+                            type="text"
+                            placeholder="Введите ссылку"
+                            class="signup-input"
+                            required
+                        />
+                    </label>
+                    <span class="signup-text">youtube</span>
+                    <label class="signup-label">
+                        <input
+                            type="text"
+                            placeholder="Введите ссылку"
+                            class="signup-input"
+                            required
+                        />
+                    </label>
+                    <span class="signup-text">Пароль</span>
+                    <label class="signup-label">
+                        <div class="signup-wrapper">
+                            <input
+                                type="text"
+                                placeholder="Введите пароль"
+                                required
+                                class="signup-pass signup-input"
+                            />
+                            <input
+                                type="password"
+                                placeholder="Введите пароль"
+                                required
+                                class="signup-pass signup-input"
+                            />
+                            <svg class="signup-show"  width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M1.52091 12C3.20344 9.4569 6.17285 6.5632 9.81334 5.73394C13.4058 4.91563 17.8149 6.07494 22.4794 12C17.8149 17.9251 13.4058 19.0844 9.81334 18.2661C6.17285 17.4368 3.20344 14.5431 1.52091 12Z"
+                                    stroke="black" stroke-linecap="round" />
+                            </svg>
+                                <!-- unshow -->
+                            <!-- <svg  class="signup-show"  width="24" height="24" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_78_49)">
+                                <path d="M9.9 4.74002C10.5883 4.5789 11.2931 4.49836 12 4.50003C19 4.50003 23 12.5 23 12.5C22.393 13.6356 21.6691 14.7048 20.84 15.69M14.12 14.62C13.8454 14.9148 13.5141 15.1512 13.1462 15.3151C12.7782 15.4791 12.3809 15.5673 11.9781 15.5744C11.5753 15.5815 11.1752 15.5074 10.8016 15.3565C10.4281 15.2056 10.0887 14.9811 9.80385 14.6962C9.51897 14.4113 9.29439 14.072 9.14351 13.6984C8.99262 13.3249 8.91853 12.9247 8.92563 12.5219C8.93274 12.1191 9.02091 11.7219 9.18488 11.3539C9.34884 10.9859 9.58525 10.6547 9.88 10.38M17.94 18.44C16.2306 19.743 14.1491 20.4649 12 20.5C5 20.5 1 12.5 1 12.5C2.24389 10.1819 3.96914 8.15663 6.06 6.56003L17.94 18.44Z" stroke="#181616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M1 1.5L23 23.5" stroke="#181616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0_78_49">
+                                <rect width="24" height="24" fill="white" transform="translate(0 0.5)"/>
+                                </clipPath>
+                                </defs>
+                                </svg> -->
+                        </div>
+                    </label>
+                    <label class="signup-label">
+                        <div class="signup-wrapper">
+                            <input
+                                type="text"
+                                placeholder="Введите пароль"
+                                required
+                                class="signup-pass signup-input"
+                                v-model="passwordSec"
+                            />
+                            <input
+                                type="password"
+                                placeholder="Введите пароль"
+                                required
+                                class="signup-pass signup-input"
+                                v-model="passwordSec"
+                            />
+                            <svg class="signup-show"  width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M1.52091 12C3.20344 9.4569 6.17285 6.5632 9.81334 5.73394C13.4058 4.91563 17.8149 6.07494 22.4794 12C17.8149 17.9251 13.4058 19.0844 9.81334 18.2661C6.17285 17.4368 3.20344 14.5431 1.52091 12Z"
+                                    stroke="black" stroke-linecap="round" />
+                            </svg>
+                                <!-- unshow -->
+                            <!-- <svg  class="signup-show"  width="24" height="24" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_78_49)">
+                                <path d="M9.9 4.74002C10.5883 4.5789 11.2931 4.49836 12 4.50003C19 4.50003 23 12.5 23 12.5C22.393 13.6356 21.6691 14.7048 20.84 15.69M14.12 14.62C13.8454 14.9148 13.5141 15.1512 13.1462 15.3151C12.7782 15.4791 12.3809 15.5673 11.9781 15.5744C11.5753 15.5815 11.1752 15.5074 10.8016 15.3565C10.4281 15.2056 10.0887 14.9811 9.80385 14.6962C9.51897 14.4113 9.29439 14.072 9.14351 13.6984C8.99262 13.3249 8.91853 12.9247 8.92563 12.5219C8.93274 12.1191 9.02091 11.7219 9.18488 11.3539C9.34884 10.9859 9.58525 10.6547 9.88 10.38M17.94 18.44C16.2306 19.743 14.1491 20.4649 12 20.5C5 20.5 1 12.5 1 12.5C2.24389 10.1819 3.96914 8.15663 6.06 6.56003L17.94 18.44Z" stroke="#181616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M1 1.5L23 23.5" stroke="#181616" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0_78_49">
+                                <rect width="24" height="24" fill="white" transform="translate(0 0.5)"/>
+                                </clipPath>
+                                </defs>
+                                </svg> -->
+                        </div>
+                    </label>
+                    <button class="signup-btn">Вход</button>
+                    <button class="signup-btn second">Отмена</button>
+                    <div
+                        style="
+                            text-align: center;
+                            margin-top: 20px;
+                            font-weight: 900;
+                        "
+                    >
+                        <a href="">Войти в свой аккаунт</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+{% endblock %}

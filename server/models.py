@@ -2,18 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-class Discipline(models.Model):
-    title = models.CharField(max_length=50, verbose_name='Название')
-    created_date = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f'{self.title}'
-
-    class Meta:
-        verbose_name = 'Дисциплина'
-        verbose_name_plural = 'Дисциплины'
-
-
 class Profession(models.Model):
     title = models.CharField(max_length=50, verbose_name='Название')
     created_date = models.DateTimeField(auto_now_add=True)
@@ -177,7 +165,7 @@ class Author(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=123, verbose_name='Название')
     science = models.ForeignKey(Science, models.PROTECT, verbose_name='Наука')
-    disciplines = models.ManyToManyField(Discipline)
+    disciplines = models.ManyToManyField(Profession)
     year = models.DateField(verbose_name='Год')
     created_date = models.DateTimeField(auto_now_add=True)
     description = models.TextField(verbose_name='Описание')
@@ -209,7 +197,7 @@ class Project(models.Model):
 class Material(models.Model):
     title = models.CharField(max_length=123, verbose_name='Название')
     project = models.ForeignKey(Project, models.SET_NULL, blank=True, null=True, verbose_name='Проект')
-    disciplines = models.ManyToManyField(Discipline)
+    disciplines = models.ManyToManyField(Profession)
     year = models.DateField(verbose_name='Год')
     created_date = models.DateTimeField(auto_now_add=True)
     description = models.TextField(verbose_name='Описание')

@@ -202,31 +202,14 @@ class ScienceDetailView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'pk'
 
 
-class DisciplineDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Discipline.objects.all()
-    serializer_class = DisciplineSerializer
-    lookup_field = 'pk'
-
-
 class CountryDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CountrySerializer
     lookup_field = 'pk'
 
 
-class DisciplineListView(generics.ListAPIView):
-    queryset = Discipline.objects.all()
-    serializer_class = DisciplineSerializer
-
-
 class CountryListView(generics.ListAPIView):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
-
-
-class DisciplineCreateView(generics.CreateAPIView):
-    queryset = Discipline.objects.all()
-    serializer_class = DisciplineSerializer
-    permission_classes = (IsAuthenticated,)
 
 
 class CountryCreateView(generics.CreateAPIView):

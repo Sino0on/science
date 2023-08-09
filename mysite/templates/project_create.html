@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="prolect-material">
+        <div class="container">
+          <div class="df-aic-jcsb">
+            <h2 class="title">Проект</h2>
+            <button class="btn-first">Назад</button>
+            <button>Покинуть проект</button>
+          </div>
+
+            <h4 class="prolect-material-name">Название</h4>
+            <input type="text" class="prolect-material-input" placeholder="Введите" v-model="title">
+            <h4 class="prolect-material-name">Аннотация</h4>
+            <textarea class="prolect-material-input" placeholder="Введите" v-model="textArea"></textarea>
+            <h4 class="prolect-material-name">Область</h4>
+            <div class="prolect-material-checkbox-wrapper">
+              <div class="prolect-material-checkbox">
+                <div class="checkbox">
+                    <div class="checkbox-wrapper">
+                        Математика
+
+                        <svg
+                            width="24"
+                            height="25"
+                            viewBox="0 0 24 25"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M6 13.7808L9.75946 18L18 7"
+                                stroke="#181616"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <rect
+                                x="1"
+                                y="1.5"
+                                width="22"
+                                height="22"
+                                rx="1"
+                                stroke="#181616"
+                                stroke-width="2"
+                            />
+                        </svg>
+                    </div>
+                </div>
+                <div class="checkbox">
+                    <div class="checkbox-wrapper">
+                        Физика
+
+                        <svg
+                            width="24"
+                            height="25"
+                            viewBox="0 0 24 25"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M6 13.7808L9.75946 18L18 7"
+                                stroke="#181616"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <rect
+                                x="1"
+                                y="1.5"
+                                width="22"
+                                height="22"
+                                rx="1"
+                                stroke="#181616"
+                                stroke-width="2"
+                            />
+                        </svg>
+                    </div>
+                </div>
+                <div class="checkbox">
+                    <div class="checkbox-wrapper">
+                        Химия
+
+                        <svg
+                            width="24"
+                            height="25"
+                            viewBox="0 0 24 25"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M6 13.7808L9.75946 18L18 7"
+                                stroke="#181616"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <rect
+                                x="1"
+                                y="1.5"
+                                width="22"
+                                height="22"
+                                rx="1"
+                                stroke="#181616"
+                                stroke-width="2"
+                            />
+                        </svg>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <!-- <h4 class="prolect-material-name">Автор</h4>
+            <input type="text" class="prolect-material-input" placeholder="Введите" v-model="author">
+            <div class="prolect-material-more">
+              <Plus />
+              Добавить автора
+            </div> -->
+            <h4 class="prolect-material-name">Дисциплины</h4>
+            <div class="prolect-material-checkbox">
+                <div class="checkbox">
+                    <div class="checkbox-wrapper">
+                        Математика
+
+                        <svg
+                            width="24"
+                            height="25"
+                            viewBox="0 0 24 25"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M6 13.7808L9.75946 18L18 7"
+                                stroke="#181616"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <rect
+                                x="1"
+                                y="1.5"
+                                width="22"
+                                height="22"
+                                rx="1"
+                                stroke="#181616"
+                                stroke-width="2"
+                            />
+                        </svg>
+                    </div>
+                </div>
+                <div class="checkbox">
+                    <div class="checkbox-wrapper">
+                        Физика
+
+                        <svg
+                            width="24"
+                            height="25"
+                            viewBox="0 0 24 25"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M6 13.7808L9.75946 18L18 7"
+                                stroke="#181616"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <rect
+                                x="1"
+                                y="1.5"
+                                width="22"
+                                height="22"
+                                rx="1"
+                                stroke="#181616"
+                                stroke-width="2"
+                            />
+                        </svg>
+                    </div>
+                </div>
+                <div class="checkbox">
+                    <div class="checkbox-wrapper">
+                        Химия
+
+                        <svg
+                            width="24"
+                            height="25"
+                            viewBox="0 0 24 25"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M6 13.7808L9.75946 18L18 7"
+                                stroke="#181616"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <rect
+                                x="1"
+                                y="1.5"
+                                width="22"
+                                height="22"
+                                rx="1"
+                                stroke="#181616"
+                                stroke-width="2"
+                            />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <button   class="prolect-material-btn">Создать материал</button>
+          </div>
+      </section>
+{% endblock %}

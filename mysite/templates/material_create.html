@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="material">
+        <div class="container">
+            <div class="df-aic-jcsb">
+                <h2 class="title">Материал</h2>
+                <div class="edit">
+                    <div class="edit-content">
+                        <svg class="edit-svg" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20 14.91V20.25C20 20.7804 19.7893 21.2891 19.4142 21.6642C19.0391 22.0393 18.5304 22.25 18 22.25H4C3.46957 22.25 2.96086 22.0393 2.58579 21.6642C2.21071 21.2891 2 20.7804 2 20.25V6.25C2 5.71957 2.21071 5.21086 2.58579 4.83579C2.96086 4.46071 3.46957 4.25 4 4.25H9.34"
+                                stroke="#010E52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M18 2.25L22 6.25L12 16.25H8V12.25L18 2.25Z" stroke="#010E52" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Редактировать
+                    </div>
+                    <svg class="edit-svg another" width="24" height="25" viewBox="0 0 24 25" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M20 14.91V20.25C20 20.7804 19.7893 21.2891 19.4142 21.6642C19.0391 22.0393 18.5304 22.25 18 22.25H4C3.46957 22.25 2.96086 22.0393 2.58579 21.6642C2.21071 21.2891 2 20.7804 2 20.25V6.25C2 5.71957 2.21071 5.21086 2.58579 4.83579C2.96086 4.46071 3.46957 4.25 4 4.25H9.34"
+                            stroke="#010E52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M18 2.25L22 6.25L12 16.25H8V12.25L18 2.25Z" stroke="#010E52" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div   class="material-btns">
+                    <button>Сохранить</button>
+                    <button>Отмена</button>
+                </div>
+            </div>
+            <div>
+                <h4 class="material-name">Название</h4>
+                <input type="text" class="material-input" placeholder="Введите" >
+                <h4 class="material-name">Аннотация</h4>
+                <textarea class="material-input textarea" placeholder="Введите" ></textarea>
+                <h4 class="material-name">Область</h4>
+
+                <div class="material-checkbox-wrapper">
+                    <div class="material-checkbox">
+                        <div class="checkbox">
+                            <div class="checkbox-wrapper">
+                                Математика
+
+                                <svg
+                                    width="24"
+                                    height="25"
+                                    viewBox="0 0 24 25"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M6 13.7808L9.75946 18L18 7"
+                                        stroke="#181616"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <rect
+                                        x="1"
+                                        y="1.5"
+                                        width="22"
+                                        height="22"
+                                        rx="1"
+                                        stroke="#181616"
+                                        stroke-width="2"
+                                    />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="checkbox">
+                            <div class="checkbox-wrapper">
+                                Физика
+
+                                <svg
+                                    width="24"
+                                    height="25"
+                                    viewBox="0 0 24 25"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M6 13.7808L9.75946 18L18 7"
+                                        stroke="#181616"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <rect
+                                        x="1"
+                                        y="1.5"
+                                        width="22"
+                                        height="22"
+                                        rx="1"
+                                        stroke="#181616"
+                                        stroke-width="2"
+                                    />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="checkbox">
+                            <div class="checkbox-wrapper">
+                                Химия
+
+                                <svg
+                                    width="24"
+                                    height="25"
+                                    viewBox="0 0 24 25"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M6 13.7808L9.75946 18L18 7"
+                                        stroke="#181616"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <rect
+                                        x="1"
+                                        y="1.5"
+                                        width="22"
+                                        height="22"
+                                        rx="1"
+                                        stroke="#181616"
+                                        stroke-width="2"
+                                    />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="material-name">Автор</h4>
+                <input type="text" class="material-input" placeholder="Введите"  >
+                <div class="material-more">
+                    <Plus />
+                    Добавить автора
+                </div>
+                <h4 class="material-text">YouTube</h4>
+                <input type="text" class="material-input" placeholder="Ссылка"  >
+                <div class="material-more">
+                    <Plus />
+                    <input type="file" ref="fileInput" >
+                </div>
+                <button class="material-btn">Создать материал</button>
+            </div>
+        </div>
+    </section>
+{% endblock %}

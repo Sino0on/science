@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+        <main>
+            <div class="container">
+                <div class="main">
+
+
+
+                    <section id="introJs"  class="chat">
+                        <div class="chatHead">
+                            <chat class="chatActions">
+                                <div><img src="{% static 'images/chats/call.svg' %}" alt="call"></div>
+                                <div class="tripleR"><img src="{% static 'images/people/triple.svg' %}" alt="call"></div>
+                                <div class="group"><img src="{% static 'images/chats/chat1.svg' %}" alt="call"></div>
+                            </chat>
+                        </div>
+
+                        <div class="chatBody" id="messages">
+
+
+                        </div>
+
+                        <form class="chatDown" id="form">
+<!--                            <div class="wrapperFile">-->
+<!--                                <input type="file" multiple>-->
+<!--                                <span><img src="{% static 'images/chat1/files.svg' %}" alt=""></span>-->
+<!--                            </div>-->
+                            <input placeholder="{% trans 'Write a message' %}"  type="text" name="message">
+                            <div class="actions">
+                                <button><img src="{% static 'images/chat1/microfon.svg' %}" alt="microfon"></button>
+                                <button class="submit"><img src="{% static 'images/chat1/send.svg' %}" alt="microfon"></button>
+                            </div>
+                        </form>
+
+                    </section>
+
+                    <section class="rightSide">
+                        <div class="SortChat">
+                            <ul>
+                                <li class="chatActive">{% trans 'All chats' %}</li>
+                                <li>{% trans 'Unread' %}</li>
+                                <li>{% trans 'Archive' %}</li>
+                            </ul>
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+            <script type="text/javascript">
+        let url = `ws://${window.location.host}/ws/socket-server/chat/1`
+        let form = document.getElementById('form')
+
+
+
+
+        const chatSocket = new WebSocket(url)
+
+        chatSocket.onmessage = function(e){
+            scrollTo(form)
+            window.scrollTo(0, document.body.scrollHeight)
+
+            let data = JSON.parse(e.data)
+            console.log('Data:', data)
+
+            if(data.type === 'chat_message'){
+                console.log('{{user}}')
+                let messages = document.getElementById('messages')
+                console.log(data.result.sender)
+                console.log({{ user.pk }})
+                if(data.result.sender == '{{ user.pk }}'){
+                messages.insertAdjacentHTML('beforeend', `
+
+                <div class="ownMessage">
+                   <div><span class="dateForMessage">${ data.result.created_date }</span><p>${ data.result.text }</p></div>
+                </div>
+
+                                    `)}
+                else{
+                messages.insertAdjacentHTML('beforeend', `
+
+
+                <div class="message">
+                    <div class="first">
+
+                        <a href="#"><img src="" alt="ava"></a>
+
+                        <div><p><span>dastan</span>${ data.result.text }</p><span class="dateForMessage">1234</span></div>
+                    </div>
+
+                </div>
+                        `)}
+
+
+            }
+        }
+
+
+
+        form.addEventListener('submit', (e)=> {
+            e.preventDefault()
+
+            let message = e.target.message.value.trim()
+            if(message.length>0){
+            chatSocket.send(JSON.stringify({
+                'type': 'chat_message',
+                'result': {
+                    'text': message,
+                    'sender': {{ user.pk }}
+                }
+            }))
+            form.reset()
+            }
+        })
+
+        window.onload = () =>
+{
+    console.log('niz')
+    scrollTo(form)
+}
+window.scrollTo(0, document.body.scrollHeight)
+
+  </script>
+
+        </main>
+    </div>
+<script src="{% static 'js/app.js' %}"></script>
+<!--<script src="{% static 'js/vote.js' %}"></script>-->
+
+{% endblock %}

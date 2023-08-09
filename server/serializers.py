@@ -42,12 +42,6 @@ class ScienceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class DisciplineSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Discipline
-        fields = '__all__'
-
-
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
@@ -56,7 +50,7 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 class MaterialListSerializer(serializers.ModelSerializer):
     authors = AuthorSerializer(many=True)
-    disciplines = DisciplineSerializer(many=True)
+    disciplines = ProfessionSerializer(many=True)
 
     def create(self, validated_data):
         print(validated_data)
@@ -93,7 +87,7 @@ class MaterialSerializer(serializers.ModelSerializer):
 
 class MaterialListSerializer(serializers.ModelSerializer):
     authors = AuthorSerializer(many=True)
-    disciplines = DisciplineSerializer(many=True)
+    disciplines = ProfessionSerializer(many=True)
 
     class Meta:
         model = Material

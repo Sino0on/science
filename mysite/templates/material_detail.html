@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="material">
+        <div class="container">
+            <div class="df-aic-jcsb">
+                <h2 class="title">Материал</h2>
+            </div>
+            <div  class="material-wrapper">
+                <ul v-if="item" class="material-list">
+                    <li class="material-item">
+                        <div class="material-pointer">Название</div>
+                        <div class="material-host">{{ item.title }}</div>
+                    </li>
+                    <div class="line"></div>
+                    <li class="material-item">
+                        <div class="material-pointer">Дата</div>
+                        <div class="material-host">{{ item?.year.replace(/-/g, ".").split(".").reverse().join(".") }}</div>
+                    </li>
+                    <div class="line"></div>
+                    <li class="material-item">
+                        <div class="material-pointer">Область</div>
+                        <div class="material-host"><span v-for="discipline in item.disciplines" :key="discipline">{{
+                            discipline.title }}</span></div>
+                    </li>
+                    <div class="line"></div>
+                    <li class="material-item">
+                        <div class="material-pointer">Автор</div>
+                        <div class="material-host-wrapper">
+                            <div class="material-host" v-for="item in 3" :key="item"> Автор {{ item }} </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="material-content">
+                    <div class="material-block-wrapper">
+                        <div class="material-block">PDF</div>
+                        <div class="material-block">PDF</div>
+                    </div>
+                    <div class="material-block max">YouTube</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

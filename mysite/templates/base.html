@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{% static '/css/core.css' %}">
+        <title>Document</title>
+    </head>
+    <body>
+        <header class="header">
+            <div class="container">
+                <ul class="header-list">
+                    <div class="burger">
+                        <div
+                            class="burger-menu"
+                        >
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="burger-menu">
+                            <svg
+                                width="25"
+                                height="24"
+                                viewBox="0 0 25 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M18.5 6L6.5 18"
+                                    stroke="#181616"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                                <path
+                                    d="M6.5 6L18.5 18"
+                                    stroke="#181616"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </div>
+                        <div
+                            class="burger-wrapper"
+                        >
+                            <ul class="burger-list">
+                                <li class="burger-item">
+                                    <a href="{% url 'projects' %}">Проекты</a>
+                                </li>
+                                <li class="burger-item">
+                                    <a href="{% url 'materials' %}">Материалы</a>
+                                </li>
+                                <li class="burger-item">
+                                    <a href="">Сообщество</a>
+                                </li>
+
+                                <li class="burger-item">
+                                    <a href="">Чат</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="burger-close"></div>
+                    </div>
+                    <li class="header-item">
+                        <a href="{% url 'projects' %}">Проекты</a>
+                    </li>
+                    <li class="header-item">
+                        <a href="{% url 'materials' %}">Материалы</a>
+                    </li>
+                    <li class="header-item">
+                        <a href="">Сообщество</a>
+                    </li>
+                    <li class="header-item">
+                        <a href="">Чат</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="header-item">
+                        <a href="{% url 'cabinet_detail' user.pk %}">Личный кабинет</a>
+                    </li>
+                    <li class="header-item">
+                        <a href="{% url 'logout' %}">Выйти из аккаунта</a>
+                    </li>
+                    {% else %}
+                    <li class="header-item">
+                        <a href="{% url 'login' %}">Войти</a>
+                    </li>
+                    <li class="header-item">
+                        <a href="{% url 'register' %}">Зарегистрироваться</a>
+                    </li>
+                    {% endif %}
+                    <li class="header-item another">
+                        <div class="header-content">
+                            RU
+                            <svg
+                                class="header-arrow"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M4.00012 6L8.00012 10L12.0001 6"
+                                    stroke="#010E52"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </div>
+                        <div class="header-wrapper">
+                            <div class="header-langs">EN</div>
+                            <div class="header-langs">KY</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+{% block content %}
+
+{% endblock %}
+    </body>
+</html>

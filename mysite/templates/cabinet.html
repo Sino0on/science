@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="home">
+            <Modal />
+            <div class="container">
+                <div class="df-aic-jcsb">
+                    <h2 class="title">Персона</h2>
+                    <div class="home-done">
+                        <div class="edit">
+                            <a href="{% url 'person_update' user.pk %}" class="edit-content">
+                                <svg
+                                    class="edit-svg"
+                                    width="24"
+                                    height="25"
+                                    viewBox="0 0 24 25"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M20 14.91V20.25C20 20.7804 19.7893 21.2891 19.4142 21.6642C19.0391 22.0393 18.5304 22.25 18 22.25H4C3.46957 22.25 2.96086 22.0393 2.58579 21.6642C2.21071 21.2891 2 20.7804 2 20.25V6.25C2 5.71957 2.21071 5.21086 2.58579 4.83579C2.96086 4.46071 3.46957 4.25 4 4.25H9.34"
+                                        stroke="#010E52"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M18 2.25L22 6.25L12 16.25H8V12.25L18 2.25Z"
+                                        stroke="#010E52"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                                Редактировать
+                            </a>
+                            <svg
+                                class="edit-svg another"
+                                width="24"
+                                height="25"
+                                viewBox="0 0 24 25"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M20 14.91V20.25C20 20.7804 19.7893 21.2891 19.4142 21.6642C19.0391 22.0393 18.5304 22.25 18 22.25H4C3.46957 22.25 2.96086 22.0393 2.58579 21.6642C2.21071 21.2891 2 20.7804 2 20.25V6.25C2 5.71957 2.21071 5.21086 2.58579 4.83579C2.96086 4.46071 3.46957 4.25 4 4.25H9.34"
+                                    stroke="#010E52"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                                <path
+                                    d="M18 2.25L22 6.25L12 16.25H8V12.25L18 2.25Z"
+                                    stroke="#010E52"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </div>
+                        <div class="btn-mess home-btn">
+                            <button>Отправить сообщение</button>
+                            <svg
+                                class="svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3.00003H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z"
+                                    stroke="#010E52"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <div class="home-content">
+                        <div class="home-block">
+                            <div class="home-ava_wrapper">
+                                <img src="{% if user.photo %}{{ user.photo.url }}{% else %}{% endif %}" alt="ava" />
+                            </div>
+                            <div class="home-info">
+                                <h4 class="home-name">
+                                    {{ user.last_name }}{{ user.first_name }}
+                                </h4>
+                                <span class="home-age">45 лет, мужчина</span>
+                                <div class="home-more">
+                                    <span class="home-pointer"
+                                        >Ученая степень</span
+                                    >
+                                    <div class="home-host advant">
+                                        Доктор наук
+                                    </div>
+                                </div>
+                                <div class="line"></div>
+                                <div class="home-more">
+                                    <span class="home-pointer"
+                                        >Специализация</span
+                                    >
+                                    <div class="home-host advant">
+                                        Математика, Биохимия
+                                    </div>
+                                </div>
+                                <div class="line"></div>
+                                <div class="home-more">
+                                    <span class="home-pointer">Город</span>
+                                    <div class="home-host advant">Астана</div>
+                                </div>
+                                <div class="line"></div>
+                                <div class="home-more">
+                                    <span class="home-pointer">Страна</span>
+                                    <div class="home-host advant">
+                                        Казахстан
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="home-block another">
+                            <h4 class="home-name blue">Научные интересы</h4>
+                            <div class="home-host adaptive">
+                                Дифференциальное исчисление
+                            </div>
+                            <div class="line"></div>
+                            <div class="home-host adaptive">
+                                Функциональный анализ
+                            </div>
+                        </div>
+                    </div>
+                    <div class="home-content">
+                        <div class="home-block column">
+                            <h4 class="home-name blue">
+                                Дополнительные данные
+                            </h4>
+                            <div class="home-more">
+                                <span class="home-pointer">Номер телефона</span>
+                                <div class="home-host another">
+                                    +996 {{ user.phone }}
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                            <div class="home-more">
+                                <span class="home-pointer">Email</span>
+                                <div
+                                    v-if="user.person"
+                                    class="home-host another"
+                                >
+                                    {{ user.email }}
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                            <div class="home-more">
+                                <span class="home-pointer">Сайт</span>
+                                <div class="home-host another">
+                                    {{ user.site }}
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                            <div class="home-more">
+                                <span class="home-pointer"
+                                    >Социальные сети</span
+                                >
+                                <div
+                                    v-if="user.person"
+                                    class="home-host another cocial"
+                                >
+                                    <a
+                                        v-if="user.person.twitter"
+                                        href="{{ user.twitter }}"
+                                        target="_blank"
+                                    >
+                                        <Twiter />
+                                    </a>
+                                    <a
+                                        v-if="user.person.facebook"
+                                        href="{{ user.facebook }}"
+                                        target="_blank"
+                                    >
+                                        <Facebook />
+                                    </a>
+                                    <a
+                                        v-if="user.person.youtube"
+                                        href="{{ user.youtube }}"
+                                        target="_blank"
+                                    >
+                                        <Youtube />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="home-block another">
+                            <h4 class="home-name blue">Общество</h4>
+                            <div class="home-host">Предпринимательство</div>
+                        </div>
+                    </div>
+                    <h4 class="home-name blue">Участие в проектах</h4>
+                    <div class="line"></div>
+                    <div class="df-aic-jcsb home-bottom-wrapper">
+                        <div
+                            v-for="item in num"
+                            :key="item"
+                            class="home-block mini"
+                        >
+                            <h4 class="home-name">
+                                Дифференциальные уравнения
+                            </h4>
+                            <span class="home-author">Авторы</span>
+                            <ul class="home-list">
+                                <li
+                                    v-for="item in num"
+                                    :key="item"
+                                    class="home-item"
+                                >
+                                    Автор {{ item }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}

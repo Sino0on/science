@@ -31,7 +31,3 @@ class CityTranslationOptions(TranslationOptions):
 class ScienceTranslationOptions(TranslationOptions):
     fields = ('title',)
 
-
-@register(Discipline)
-class DisciplineTranslationOptions(TranslationOptions):
-    fields = ('title',)

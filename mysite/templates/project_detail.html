@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="prolect-material">
+            <div class="container">
+                <div class="df-aic-jcsb">
+                    <h2 class="title">Проект</h2>
+                    <button class="btn-first">Назад</button>
+                </div>
+                <div class="prolect-material-wrapper">
+                    <ul class="prolect-material-list">
+                        <button class="btn-second">Присоединиться</button>
+                        <li class="prolect-material-item">
+                            <div class="prolect-material-pointer">Название</div>
+                            <div class="prolect-material-host">Проект</div>
+                        </li>
+                        <div class="line"></div>
+                        <li class="prolect-material-item">
+                            <div class="prolect-material-pointer">Дата</div>
+                            <div class="prolect-material-host">13.07.2023</div>
+                        </li>
+                        <div class="line"></div>
+                        <li class="prolect-material-item">
+                            <div class="prolect-material-pointer">Область</div>
+                            <div class="prolect-material-host">
+                                Математика, физика
+                            </div>
+                        </li>
+                        <div class="line"></div>
+                        <li class="prolect-material-item">
+                            <div class="prolect-material-pointer">Автор</div>
+                            <div class="prolect-material-host-wrapper">
+                                <div
+                                    class="prolect-material-host"
+                                >
+                                    Автор 1
+                                </div>
+                                <div
+                                    class="prolect-material-host"
+                                >
+                                    Автор 1
+                                </div>
+                            </div>
+                        </li>
+                        <div class="line"></div>
+                        <li class="prolect-material-item">
+                            <div class="prolect-material-pointer">
+                                Инжиниринг
+                            </div>
+                            <div class="prolect-material-host-wrapper">
+                                <div
+                                    class="prolect-material-host"
+                                >
+                                    Phd
+                                </div>
+                                <div
+                                    class="prolect-material-host"
+                                >
+                                    Phd
+                                </div>
+                            </div>
+                        </li>
+                        <li class="prolect-material-item">
+                            <Btn
+                                style="margin-top: 30px"
+                                @click="$router.push(`/matrerial-create/` + $route.params.id)"
+                                text="Содать материал"
+                            />
+                        </li>
+                    </ul>
+                    <p class="prolect-material-content_text">
+                        В статье предлагается общий обзор истории управленческой
+                        и экономической мысли России в конце XIX — начале XX
+                        века в контексте основных проблем развития персонального
+                        менеджмента, социокультурных аспектов управления
+                        человеческими ресурсами и менеджмента качества. Особое
+                        внимание уделяется характеристике бережливости в
+                        интерпретации известного российского учёного И.И. Янжула
+                        с точки зрения анализа социокультурных,
+                        социально-экономических и социально-психологических
+                        основ персонального менеджмента.
+                    </p>
+                </div>
+
+                <h4 class="home-name blue">Участие в проектах</h4>
+                <div class="line"></div>
+                <div class="df-aic-jcsb" style="flex-wrap: wrap; gap: 30px;">
+                    <div
+                        style="width: 30%; background: white"
+                        class="df-aic-jcsb home-bottom-wrapper"
+                    >
+                        <div
+                            v-for="item in 3"
+                            :key="item"
+                            class="home-block mini"
+                        >
+                            <h4 class="home-name">
+                                Дифференциальные уравнения
+                            </h4>
+                            <span class="home-author">Авторы</span>
+                            <div class="line"></div>
+                            <ul class="home-list">
+                                <li
+                                    v-for="item in 3"
+                                    :key="item"
+                                    class="home-item"
+                                >
+                                    Автор 1
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="df-aic-jcsb home-bottom-wrapper"
+                    style="width: 30%; background: white">
+                        <div
+                            v-for="item in 3"
+                            :key="item"
+                            class="home-block mini"
+                        >
+                            <h4 class="home-name">
+                                Дифференциальные уравнения
+                            </h4>
+                            <span class="home-author">Авторы</span>
+                            <div class="line"></div>
+                            <ul class="home-list">
+                                <li
+                                    v-for="item in 3"
+                                    :key="item"
+                                    class="home-item"
+                                >
+                                    Автор 1
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="df-aic-jcsb home-bottom-wrapper"
+                    style="width: 30%; background: white">
+                        <div
+                            v-for="item in 3"
+                            :key="item"
+                            class="home-block mini"
+                        >
+                            <h4 class="home-name">
+                                Дифференциальные уравнения
+                            </h4>
+                            <span class="home-author">Авторы</span>
+                            <div class="line"></div>
+                            <ul class="home-list">
+                                <li
+                                    v-for="item in 3"
+                                    :key="item"
+                                    class="home-item"
+                                >
+                                    Автор 1
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}
